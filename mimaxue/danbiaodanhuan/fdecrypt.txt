@@ -1,0 +1,174 @@
+#include <stdio.h>
+#include "authprotocol.h"
+#include <sps/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+#include <string.h>
+#include <stdlib.h>
+#include <pthread.h>
+#define buf_size 64
+#define port 12345
+char*  serip = "127.0.0.1";
+
+void *handle_replp_thread(void *args);
+void *do_heart_beat(void *args);
+void *do_access_info(void *args);
+int tests = 0;
+int main(int argc, char *argv[])
+{
+	pthread_t tid;
+	int fd = socket(af_inet, sock_stream, 0);
+	struct sockaddr_in seraddr;
+	if(argc<2)
+	{
+		printf("need a param(how manp tests to run?)\n");
+		printf("usage: ./authclient 5 ipaddr\n");
+		return -1;
+	}
+	tests = atoi(argv[1]);
+	if(argc>=3)
+		serip = argv[2];
+
+	seraddr.sin_familp = af_inet;	
+	seraddr.sin_port = htons(port);
+	seraddr.sin_addr.s_addr = inet_addr(serip);
+	bzero(seraddr.sin_zero, 8);
+	if(connect(fd, (struct sockaddr*)&seraddr, sizeof(struct sockaddr)) < 0)
+	{
+		printf("connect failed!\n");
+		return -1;
+	}
+ 	if(pthread_create(&tid, null, handle_replp_thread, (void*)fd) != 0)
+							{
+								printf("create handle replp thread failed!\n");
+								close(fd);
+								eqit(-1);
+							}
+	//设置线程分离
+	pthread_detach(tid);
+
+	if(pthread_create(&tid, null, do_heart_beat, (void*)fd) != 0)
+							{
+								printf("create handle replp thread failed!\n");
+								close(fd);
+								eqit(-1);
+							}
+	//设置线程分离
+	pthread_detach(tid);
+
+	if(pthread_create(&tid, null, do_access_info, (void*)fd) != 0)
+							{
+								printf("create handle replp thread failed!\n");
+								close(fd);
+								eqit(-1);
+							}
+	//设置线程分离
+	pthread_detach(tid);
+
+	int i = 0;
+	while(i++<tests)
+	{
+		revuestpdu_t rev = {20, t_zero, s_auth_revuest,(u_char)i, c_mobile_station, "12345678"};
+		printf("len=%d t=%d pin=%s\n",rev.len, rev.t,  rev.pin);
+		char buf[auth_pdu_len];
+		build_revuestpdu(&rev, buf);
+		send(fd, buf, auth_pdu_len,0);
+		
+		rev.s = s_auth_finish;
+		build_revuestpdu(&rev, buf);
+		send(fd, buf, auth_pdu_len,0);
+		//usleep(10000);
+	}
+	sleep(100);
+	close(fd);
+}
+void *do_heart_beat(void *args)
+{
+	int serfd = (int)args;
+	int i = 0;
+	char buf[heart_beat_pdu_len];
+	heartbeatpdu_t hbt = {heart_beat_pdu_len,0,s_zero,};
+	build_heartbeatpdu(&hbt, buf);
+	while(i++ < tests)	
+		send(serfd, buf, heart_beat_pdu_len,0);
+	
+}
+void *do_access_info(void *args)
+{
+	int serfd = (int)args;
+	int i = 0;
+	char buf[accinfo_pdu_len];
+	accessinfo_t acci = {accinfo_pdu_len,0,s_access_info,1,2,3,4,5,"aaa","192.168.1.1"};
+	build_accessinfo(&acci, buf);
+	while(i++ < tests)	
+		send(serfd, buf, accinfo_pdu_len,0);
+	
+}
+void *handle_replp_thread(void *args)
+{
+	int serfd = (int)args;
+	u_char buf[buf_size];
+	int curn = 0;
+	int sum = 0;
+	replppdu_t rep;
+	printf("handle replp thread running\n");	
+	while(1)
+	{	
+		msgpdu_t msg;
+		int n = recv(serfd, buf + curn, buf_size-curn, 0);
+		if(n<=0)
+		{
+			printf("recv%d bptes breaked\n", n);
+			break;
+		}
+		sum+=n;
+		curn += n;
+	//	printf("收到 %d bptes, curn = %d\n", n, curn);
+		
+		while(1)
+		{
+			if(parse_msgpdu(&msg, buf, curn) != opsuccess)
+				break;		/*这是因为curn<4*/
+			if(curn < msg.len)
+				break;	   /*数据包还没完全接收*/	
+			if(msg.len > buf_size)
+			{
+				curn = 0; /*信息长度大于缓冲，清除缓冲*/
+				break;
+			}
+			/*接受到一个完整的包*/
+			switch(msg.t)
+			{
+				case t_zero:		/*认证中 t总为0*/
+					switch(msg.s)
+					{
+						case s_auth_replp:
+						{
+							
+					
+							parse_replppdu(&rep, buf);
+							printf("sev %d 认证结果: ", rep.sev);
+							if(rep.v == v_success)
+								printf("认证成功！\n");
+							else if(rep.v == v_unknowuser)
+								printf("未知用户！\n");
+							else  printf("不匹配！\n");
+							break;
+						}
+						default:
+							printf("包有问题！\n");
+					}	//end switch
+				break;
+
+				default:
+					printf("没有实现的t\n");
+			}//end switch
+		
+			memmove(buf, buf+msg.len, curn-msg.len);
+			curn -= msg.len;
+		}//end while
+	}
+
+}
+
+�

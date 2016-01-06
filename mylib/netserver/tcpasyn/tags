@@ -1,0 +1,64 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AsynSelect	TcpAsynSelect.cpp	/^	AsynSelect(bool block = true, int sec = 0, int usec = 0)$/;"	f	class:AsynSelect
+AsynSelect	TcpAsynSelect.cpp	/^class AsynSelect$/;"	c	file:
+CC	Makefile	/^CC=gcc$/;"	m
+CPP	Makefile	/^CPP=g++$/;"	m
+CPPFLAGS	Makefile	/^CPPFLAGS=-g$/;"	m
+ChatRoom	TcpAsynSelect.cpp	/^	ChatRoom(int port, string name):TcpServer(port)$/;"	f	class:ChatRoom
+ChatRoom	TcpAsynSelect.cpp	/^class ChatRoom:public TcpServer$/;"	c	file:
+DataPacket	TcpAsynSelect.cpp	/^		DataPacket(const void *buf, int size)$/;"	f	class:TcpServer::DataPacket
+DataPacket	TcpAsynSelect.cpp	/^	class DataPacket$/;"	c	class:TcpServer	file:
+FdIterator	TcpAsynSelect.cpp	/^	typedef list<int>::iterator FdIterator;$/;"	t	class:AsynSelect	file:
+TcpServer	TcpAsynSelect.cpp	/^	TcpServer(int port, bool block = true, int sec = 1, int usec = 0):AsynSelect(block, sec, usec)$/;"	f	class:TcpServer
+TcpServer	TcpAsynSelect.cpp	/^class TcpServer:public AsynSelect$/;"	c	file:
+UdpServer	TcpAsynSelect.cpp	/^	UdpServer(int port, bool block = true, int sec = 0, int usec = 0):AsynSelect(block, sec, usec)$/;"	f	class:UdpServer
+UdpServer	TcpAsynSelect.cpp	/^class UdpServer:public AsynSelect$/;"	c	file:
+addRfds	TcpAsynSelect.cpp	/^	void addRfds(int fd) { rfds.push_back(fd); }$/;"	f	class:AsynSelect
+addWfds	TcpAsynSelect.cpp	/^	void addWfds(int fd) { wfds.push_back(fd); }$/;"	f	class:AsynSelect
+broadcast	TcpAsynSelect.cpp	/^	void broadcast(int fd, const char *msg, int msg_len)$/;"	f	class:ChatRoom
+clts	TcpAsynSelect.cpp	/^	list<int> clts;$/;"	m	class:ChatRoom	file:
+data	TcpAsynSelect.cpp	/^		char *data;$/;"	m	class:TcpServer::DataPacket	file:
+dataLen	TcpAsynSelect.cpp	/^		int dataLen;$/;"	m	class:TcpServer::DataPacket	file:
+depress	TcpAsynSelect.cpp	/^		void depress(int len)$/;"	f	class:TcpServer::DataPacket
+handle_accept	TcpAsynSelect.cpp	/^	virtual void handle_accept()$/;"	f	class:ChatRoom
+handle_accept	TcpAsynSelect.cpp	/^	virtual void handle_accept()$/;"	f	class:TcpServer
+handle_disconnect	TcpAsynSelect.cpp	/^	void handle_disconnect(int fd)$/;"	f	class:TcpServer	file:
+handle_read	TcpAsynSelect.cpp	/^	virtual void handle_read(int fd)$/;"	f	class:TcpServer
+handle_read	TcpAsynSelect.cpp	/^	virtual void handle_read(int fd)$/;"	f	class:UdpServer
+handle_read_data	TcpAsynSelect.cpp	/^	virtual void handle_read_data(int fd)$/;"	f	class:ChatRoom
+handle_read_data	TcpAsynSelect.cpp	/^	virtual void handle_read_data(int fd)$/;"	f	class:TcpServer
+handle_timedout	TcpAsynSelect.cpp	/^	virtual void handle_timedout(){}$/;"	f	class:AsynSelect
+handle_write	TcpAsynSelect.cpp	/^	virtual void handle_write(int fd)$/;"	f	class:TcpServer
+handle_write	TcpAsynSelect.cpp	/^	virtual void handle_write(int fd)$/;"	f	class:UdpServer
+isBlock	TcpAsynSelect.cpp	/^	bool isBlock;$/;"	m	class:AsynSelect	file:
+main	TcpAsynSelect.cpp	/^int main()$/;"	f
+mfds	TcpAsynSelect.cpp	/^	map<int, queue<DataPacket*> >  mfds;$/;"	m	class:TcpServer	file:
+name	TcpAsynSelect.cpp	/^	string name;$/;"	m	class:ChatRoom	file:
+read_data	TcpAsynSelect.cpp	/^	int  read_data(int fd, void *buf, int buf_len) $/;"	f	class:AsynSelect
+removeRfds	TcpAsynSelect.cpp	/^	void removeRfds(int fd) { rfds.remove(fd); }$/;"	f	class:AsynSelect
+removeWfds	TcpAsynSelect.cpp	/^	void removeWfds(int fd) { wfds.remove(fd); }$/;"	f	class:AsynSelect
+rfds	TcpAsynSelect.cpp	/^	list<int> rfds,wfds;$/;"	m	class:AsynSelect	file:
+run	TcpAsynSelect.cpp	/^	void run()$/;"	f	class:AsynSelect
+ser_addr	TcpAsynSelect.cpp	/^	struct sockaddr_in ser_addr;$/;"	m	class:TcpServer	typeref:struct:TcpServer::sockaddr_in	file:
+ser_addr	TcpAsynSelect.cpp	/^	struct sockaddr_in ser_addr;$/;"	m	class:UdpServer	typeref:struct:UdpServer::sockaddr_in	file:
+ser_fd	TcpAsynSelect.cpp	/^	int ser_fd;$/;"	m	class:TcpServer	file:
+ser_fd	TcpAsynSelect.cpp	/^	int ser_fd;$/;"	m	class:UdpServer	file:
+ser_port	TcpAsynSelect.cpp	/^	int ser_port;$/;"	m	class:TcpServer	file:
+ser_port	TcpAsynSelect.cpp	/^	int ser_port;$/;"	m	class:UdpServer	file:
+tcp_accept	TcpAsynSelect.cpp	/^	int tcp_accept()$/;"	f	class:TcpServer
+tcp_asyn_write	TcpAsynSelect.cpp	/^	int tcp_asyn_write(int fd, const void *buf, int dataLen)$/;"	f	class:TcpServer
+tcp_disconnect	TcpAsynSelect.cpp	/^	virtual void tcp_disconnect(int fd)$/;"	f	class:ChatRoom
+tcp_disconnect	TcpAsynSelect.cpp	/^	virtual void tcp_disconnect(int fd)$/;"	f	class:TcpServer
+tcp_read	TcpAsynSelect.cpp	/^	int tcp_read(int fd, void *buf, int dataLen)$/;"	f	class:TcpServer
+tcp_write	TcpAsynSelect.cpp	/^	int tcp_write(int fd, const void *buf, int dataLen)$/;"	f	class:TcpServer
+tv	TcpAsynSelect.cpp	/^	struct timeval tv;$/;"	m	class:AsynSelect	typeref:struct:AsynSelect::timeval	file:
+wfds	TcpAsynSelect.cpp	/^	list<int> rfds,wfds;$/;"	m	class:AsynSelect	file:
+write_data	TcpAsynSelect.cpp	/^	int write_data(int fd, const void *buf, int buf_len)$/;"	f	class:AsynSelect
+~DataPacket	TcpAsynSelect.cpp	/^		~DataPacket()$/;"	f	class:TcpServer::DataPacket
+~TcpServer	TcpAsynSelect.cpp	/^	~TcpServer()$/;"	f	class:TcpServer
+~UdpServer	TcpAsynSelect.cpp	/^	~UdpServer()$/;"	f	class:UdpServer

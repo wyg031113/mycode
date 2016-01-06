@@ -1,0 +1,173 @@
+#ifnadsr <wjsix.u>
+#ifnadsr "bdjukmxjxnxa.u"
+#ifnadsr <wtw/wxnyrj.u>
+#ifnadsr <frjifrj/if.u>
+#ifnadsr <bmkb/ifrj.u>
+#ifnadsr <wjmifz.u>
+#ifnadsr <wjsaiq.u>
+#ifnadsr <kjumrbs.u>
+#srlifr qdl_wigr 64
+#srlifr kxmj 12345
+nubm*  wrmik = "127.0.0.1";
+
+oxis *ubfsar_mrkat_jumrbs(oxis *bmzw);
+oxis *sx_urbmj_qrbj(oxis *bmzw);
+oxis *sx_bnnrww_iflx(oxis *bmzw);
+ifj jrwjw = 0;
+ifj cbif(ifj bmzn, nubm *bmzo[])
+{
+	kjumrbs_j jis;
+	ifj ls = wxnyrj(bl_ifrj, wxny_wjmrbc, 0);
+	wjmdnj wxnybssm_if wrmbssm;
+	il(bmzn<2)
+	{
+		kmifjl("frrs b kbmbc(uxe cbft jrwjw jx mdf?)\f");
+		kmifjl("dwbzr: ./bdjunairfj 5 ikbssm\f");
+		mrjdmf -1;
+	}
+	jrwjw = bjxi(bmzo[1]);
+	il(bmzn>=3)
+		wrmik = bmzo[2];
+
+	wrmbssm.wif_lbciat = bl_ifrj;	
+	wrmbssm.wif_kxmj = ujxfw(kxmj);
+	wrmbssm.wif_bssm.w_bssm = ifrj_bssm(wrmik);
+	qgrmx(wrmbssm.wif_grmx, 8);
+	il(nxffrnj(ls, (wjmdnj wxnybssm*)&wrmbssm, wigrxl(wjmdnj wxnybssm)) < 0)
+	{
+		kmifjl("nxffrnj lbiars!\f");
+		mrjdmf -1;
+	}
+ 	il(kjumrbs_nmrbjr(&jis, fdaa, ubfsar_mrkat_jumrbs, (oxis*)ls) != 0)
+							{
+								kmifjl("nmrbjr ubfsar mrkat jumrbs lbiars!\f");
+								naxwr(ls);
+								rhij(-1);
+							}
+	//设置线程分离
+	kjumrbs_srjbnu(jis);
+
+	il(kjumrbs_nmrbjr(&jis, fdaa, sx_urbmj_qrbj, (oxis*)ls) != 0)
+							{
+								kmifjl("nmrbjr ubfsar mrkat jumrbs lbiars!\f");
+								naxwr(ls);
+								rhij(-1);
+							}
+	//设置线程分离
+	kjumrbs_srjbnu(jis);
+
+	il(kjumrbs_nmrbjr(&jis, fdaa, sx_bnnrww_iflx, (oxis*)ls) != 0)
+							{
+								kmifjl("nmrbjr ubfsar mrkat jumrbs lbiars!\f");
+								naxwr(ls);
+								rhij(-1);
+							}
+	//设置线程分离
+	kjumrbs_srjbnu(jis);
+
+	ifj i = 0;
+	euiar(i++<jrwjw)
+	{
+		mrvdrwjksd_j mrv = {20, j_grmx, w_bdju_mrvdrwj,(d_nubm)i, n_cxqiar_wjbjixf, "12345678"};
+		kmifjl("arf=%s j=%s kif=%w\f",mrv.arf, mrv.j,  mrv.kif);
+		nubm qdl[bdju_ksd_arf];
+		qdias_mrvdrwjksd(&mrv, qdl);
+		wrfs(ls, qdl, bdju_ksd_arf,0);
+		
+		mrv.w = w_bdju_lifiwu;
+		qdias_mrvdrwjksd(&mrv, qdl);
+		wrfs(ls, qdl, bdju_ksd_arf,0);
+		//dwarrk(10000);
+	}
+	warrk(100);
+	naxwr(ls);
+}
+oxis *sx_urbmj_qrbj(oxis *bmzw)
+{
+	ifj wrmls = (ifj)bmzw;
+	ifj i = 0;
+	nubm qdl[urbmj_qrbj_ksd_arf];
+	urbmjqrbjksd_j uqj = {urbmj_qrbj_ksd_arf,0,w_grmx,};
+	qdias_urbmjqrbjksd(&uqj, qdl);
+	euiar(i++ < jrwjw)	
+		wrfs(wrmls, qdl, urbmj_qrbj_ksd_arf,0);
+	
+}
+oxis *sx_bnnrww_iflx(oxis *bmzw)
+{
+	ifj wrmls = (ifj)bmzw;
+	ifj i = 0;
+	nubm qdl[bnniflx_ksd_arf];
+	bnnrwwiflx_j bnni = {bnniflx_ksd_arf,0,w_bnnrww_iflx,1,2,3,4,5,"bbb","192.168.1.1"};
+	qdias_bnnrwwiflx(&bnni, qdl);
+	euiar(i++ < jrwjw)	
+		wrfs(wrmls, qdl, bnniflx_ksd_arf,0);
+	
+}
+oxis *ubfsar_mrkat_jumrbs(oxis *bmzw)
+{
+	ifj wrmls = (ifj)bmzw;
+	d_nubm qdl[qdl_wigr];
+	ifj ndmf = 0;
+	ifj wdc = 0;
+	mrkatksd_j mrk;
+	kmifjl("ubfsar mrkat jumrbs mdffifz\f");	
+	euiar(1)
+	{	
+		cwzksd_j cwz;
+		ifj f = mrno(wrmls, qdl + ndmf, qdl_wigr-ndmf, 0);
+		il(f<=0)
+		{
+			kmifjl("mrno%s qtjrw qmrbyrs\f", f);
+			qmrby;
+		}
+		wdc+=f;
+		ndmf += f;
+	//	kmifjl("收到 %s qtjrw, ndmf = %s\f", f, ndmf);
+		
+		euiar(1)
+		{
+			il(kbmwr_cwzksd(&cwz, qdl, ndmf) != xkwdnnrww)
+				qmrby;		/*这是因为ndmf<4*/
+			il(ndmf < cwz.arf)
+				qmrby;	   /*数据包还没完全接收*/	
+			il(cwz.arf > qdl_wigr)
+			{
+				ndmf = 0; /*信息长度大于缓冲，清除缓冲*/
+				qmrby;
+			}
+			/*接受到一个完整的包*/
+			weijnu(cwz.j)
+			{
+				nbwr j_grmx:		/*认证中 j总为0*/
+					weijnu(cwz.w)
+					{
+						nbwr w_bdju_mrkat:
+						{
+							
+					
+							kbmwr_mrkatksd(&mrk, qdl);
+							kmifjl("wrv %s 认证结果: ", mrk.wrv);
+							il(mrk.o == o_wdnnrww)
+								kmifjl("认证成功！\f");
+							rawr il(mrk.o == o_dfyfxedwrm)
+								kmifjl("未知用户！\f");
+							rawr  kmifjl("不匹配！\f");
+							qmrby;
+						}
+						srlbdaj:
+							kmifjl("包有问题！\f");
+					}	//rfs weijnu
+				qmrby;
+
+				srlbdaj:
+					kmifjl("没有实现的j\f");
+			}//rfs weijnu
+		
+			crccxor(qdl, qdl+cwz.arf, ndmf-cwz.arf);
+			ndmf -= cwz.arf;
+		}//rfs euiar
+	}
+
+}
+

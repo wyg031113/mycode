@@ -1,0 +1,9 @@
+#include "types.h"
+#include "icmp.h"
+#include "ip.h"
+int main()
+{
+	ubyte buff[1024];
+	IP_PACKET *ip = new(buff) IP_PACKET;
+	ICMP_PACKET *icmp = new(buff+IP_HEAD_LEN)ICMP_PACKET;
+}

@@ -1,0 +1,8 @@
+#!/bin/bash
+#./keygen
+#./encryptdbdh
+./calcFreq cipher.txt freq.txt
+./calcFreq example.txt exfreq.txt
+./getkey freq.txt exfreq.txt
+#./decryptdbdh
+
